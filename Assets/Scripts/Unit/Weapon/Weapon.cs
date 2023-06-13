@@ -5,6 +5,9 @@ using Structs;
 using Enums;
 using CustomAction;
 
+/// <summary>
+/// 공동 캐스팅과 부모에서 동일한 파생 클래스를 가져오기 위한 추상클래스(인터페이스)
+/// </summary>
 public interface IWeapon { }
 
 public abstract class Weapon<T> : MonoBehaviour, IWeapon where T : Unit
@@ -20,18 +23,16 @@ public abstract class Weapon<T> : MonoBehaviour, IWeapon where T : Unit
     public float dmg;
     public eAttackType attackType;
 
-    public int GetDetectionLayer { get { return detectionLayer; } }
+    public int GetDetectionLayer => detectionLayer;
     public T Owner { get { return owner; } set { owner = value; } }
-    public Collider GetCollider { get { return collider; } }
+    public Collider GetCollider => collider;
 
     protected virtual void Awake()
     {
-
         if (Owner == null) Owner = GetComponentInParent<T>();
         if (Owner != null) collider = GetComponent<Collider>();
         if (collider == null) collider = GetComponentInChildren<Collider>();
         hitObjs = new List<GameObject>();
-
     }
     protected virtual void Start() { }
     protected virtual void Update() { }

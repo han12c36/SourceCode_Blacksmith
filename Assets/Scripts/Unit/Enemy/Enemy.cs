@@ -5,7 +5,9 @@ public abstract class Enemy<A> : Unit where A : IActionTable
 {
     protected Player target;
     protected Transform targetTran;
+
     private IActionTable actionTable;
+
     public EnemyWeapon<Enemy<IActionTable>> enemyWeapon;
     public Weapon<Unit> weapon;
 
@@ -32,11 +34,12 @@ public abstract class Enemy<A> : Unit where A : IActionTable
 
         if (enemyWeapon != null) weapon = (Weapon<Unit>)enemyWeapon;
         
-        if (weapon != null) weapon.detectionLayer = 1 << LayerMask.NameToLayer("Player");
+        if (weapon != null) weapon.detectionLayer = 1 << LayerMask.NameToLayer(Constants.EnemyDectionTargetLayerName);
     }
     public override void Start()
     {
         base.Start();
+
         //target = SubManager.Get<InGameManager>().Player;
         //targetTran = target.transform;
     }

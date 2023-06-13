@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,9 +15,9 @@ public class TutorialButton : MonoBehaviour
         //btn.onClick.AddListener(action);
     }
 
-    public void SetEnpty()
+    public void SetEmpty()
     {
-        btn.transform.position = new Vector3(-1200, 0, 0);
+        btn.transform.position = new Vector3(Constants.maxValue, 0, 0);
         btn.onClick = null;
     }
 

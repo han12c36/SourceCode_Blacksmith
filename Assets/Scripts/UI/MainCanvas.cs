@@ -1,26 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Enums;
 using System;
 
 public class MainCanvas : MonoBehaviour
 {
-    [Header("Clock")]
+    [Header(Constants.Clock)]
     public Image fill_Image;
     //public Clock clock;
 
-    [Header("PlayerInfo")]
-    public InterfaceUserInfo interfaceUserInfo;
+    [Header(Constants.UserData)]
+    public InterfaceUserData interfaceUserData;
     //public CharactorWindow charactorWindow;
 
     //private TimeManager timeManager;
 
-    [Header("Shop")]
+    [Header(Constants.Shop)]
     //public SellCanvas sellCanvas;
 
-    [Header("Inventory")]
+    [Header(Constants.Inventory)]
     //public InventoryCanvas inventoryCanvas;
 
     Action act;

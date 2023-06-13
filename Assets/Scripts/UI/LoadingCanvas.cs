@@ -19,7 +19,6 @@ public class LoadingCanvas : CustomCanvas
         //SoundManager.Instance.GetMusicCanvas.gameObject.SetActive(false);
     }
 
-
     public void Initialize()
     {
         //if(tmpAnimator == null) tmpAnimator = new DOTweenTMPAnimator(loadingText);

@@ -1,5 +1,8 @@
 using MVP;
 
+/// <summary>
+/// presenter의 Model로 지정하기 위한 Interface상속
+/// </summary>
 public class UserData : IModel<UserData>
 {
     public  string userName;
@@ -62,10 +65,10 @@ public class UserData : IModel<UserData>
         if (userName == changeName) return userName;
         return userName = changeName;
     }
-    public void OnTriggerEventAddGold(int addAmount) => InterfaceUserInfo.presenter.M_AddGold(AddGold(addAmount));
-    public void OnTriggerEventLevelUp(int addLevel) => InterfaceUserInfo.presenter.M_LevelUp(LevelUp(addLevel));
+    public void OnTriggerEventAddGold(int addAmount) => InterfaceUserData.presenter.M_AddGold(AddGold(addAmount));
+    public void OnTriggerEventLevelUp(int addLevel) => InterfaceUserData.presenter.M_LevelUp(LevelUp(addLevel));
     public void OnTriggerEventChangeName()
-        => InterfaceUserInfo.presenter.M_ChangeName(ChangeName(Constants.TestUserName));
+        => InterfaceUserData.presenter.M_ChangeName(ChangeName(Constants.TestUserName));
 
     //public void AddStatPoint(int amount = 0)
     //{

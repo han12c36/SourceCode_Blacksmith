@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
-using UnityEditor;
-
 
 public interface IFrame { void Setting(); void Enter(); void Escape(); }
 
+/// <summary>
+/// Key입력에 관한 TutorialData
+/// </summary>
 public class TriggerData
 {
     public Type type;
@@ -27,6 +28,9 @@ public class TriggerData
     public Transform O_trWindow => o_trWindow;
 }
 
+/// <summary>
+/// Tutorial ScriptObject에 입력된 이벤트 오브젝트와 상황을 풀어내는 과정
+/// </summary>
 public class T_Frame
 {
     protected T_Protocol     protocol;
@@ -54,7 +58,7 @@ public class T_Frame
     { return protocol.triggerDataList[protocol.curTutorialIndex][curTalkIndex].O_trWindow; }
 
     /*
-     * 상황에 대한 처리는 여기서 하는게 맞다.
+     * 상황에 대한 처리
      * Button을 예시로 위임하는 것
      * T_Type.Key는 키 값을 받아오려면 Update 를 돌려야 하기 때문에 Coroutine을 넘겨줘서 키 누름을 받아옴.
      * 
@@ -134,6 +138,9 @@ public class T_Frame
 
     public void TalkPrint(T_Data talk) { if (text != talk.data) canvas.DrawText(talk); }
 
+    /// <summary>
+    /// Tutorial CommonBtn 기능 상실 + 상황, Key, Window에 위임
+    /// </summary>
     public void Entrust_FrameStep(Button triggerButton,bool toTrigger)
     {
         hookerCheck(triggerButton, toTrigger);
@@ -231,7 +238,7 @@ public class T_Frame
         {
             if (talkDatas[curTalkIndex].t_sprite != null)
             {
-                if(talkDatas[curTalkIndex].t_sprite.name != "없음")
+                if(talkDatas[curTalkIndex].t_sprite.name != "")
                 {
                     canvas.tutorialImageBg.SetActive(true);
                     canvas.tutorialImage.sprite = talkDatas[curTalkIndex].t_sprite;

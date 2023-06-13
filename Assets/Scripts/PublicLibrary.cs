@@ -138,12 +138,19 @@ public abstract partial class PublicLibrary
         return probs.Length - 1;
     }
 
+
+    /// <summary>
+    /// Get Bool isAnimation Finish
+    /// </summary>
+    /// <param name="animCtrl"></param>
+    /// <param name="animationName">애니메이터 안에 있는 노드이름</param>
+    /// <param name="ratio"></param>
+    /// <returns>isAnimation Finish?</returns>
+
     public static bool IsAnimationAlmostFinish(Animator animCtrl, string animationName, float ratio = 0.95f)
     {
-        Debug.Log(ratio);
-        //Debug.Log(animCtrl.GetCurrentAnimatorStateInfo(0).normalizedTime);
         if (animCtrl.GetCurrentAnimatorStateInfo(0).IsName(animationName))
-        {//여기서 IsName은 애니메이션클립 이름이 아니라 애니메이터 안에 있는 노드이름임
+        {
             if (animCtrl.GetCurrentAnimatorStateInfo(0).normalizedTime >= ratio)
             {
                 return true;
@@ -156,7 +163,6 @@ public abstract partial class PublicLibrary
     {
         if (animCtrl.GetCurrentAnimatorStateInfo(0).IsName(animationName))
         {
-            //여기서 IsName은 애니메이션클립 이름이 아니라 애니메이터 안에 있는 노드이름임
             if (animCtrl.GetCurrentAnimatorStateInfo(0).normalizedTime >= ratio)
             {
                 return true;
@@ -169,7 +175,6 @@ public abstract partial class PublicLibrary
     {
         if (animCtrl.GetCurrentAnimatorStateInfo(animationLayer).IsName(animationName))
         {
-            //여기서 IsName은 애니메이션클립 이름이 아니라 애니메이터 안에 있는 노드이름임
             return true;
         }
         return false;
@@ -179,10 +184,8 @@ public abstract partial class PublicLibrary
     {
         if (animCtrl.GetCurrentAnimatorStateInfo(0).IsName(animationName))
         {
-            //여기서 IsName은 애니메이션클립 이름이 아니라 애니메이터 안에 있는 노드이름임
             return animCtrl.GetCurrentAnimatorStateInfo(0).normalizedTime;
         }
-        Debug.Log("이 애니메이션 아닌디?");
         return 0f;
     }
 
@@ -350,7 +353,6 @@ namespace CustomDic
                 //중복된 키가 있다면 에러 출력
                 if (this.ContainsKey(g_InspectorKeys[i]))
                 {
-                    Debug.LogError("중복된 키가 있습니다.");
                     break;
                 }
                 base.Add(g_InspectorKeys[i], g_InspectorValues[i]);
@@ -359,8 +361,6 @@ namespace CustomDic
 
         public void OnAfterDeserialize()
         {
-            Debug.Log(this + string.Format("인스펙터 키 수 : {0} 값 수 : {1}", g_InspectorKeys.Count, g_InspectorValues.Count));
-
             //인스펙터의 Key Value가 KeyValuePair 형태를 띌 경우
             if (g_InspectorKeys.Count == g_InspectorValues.Count)
             {

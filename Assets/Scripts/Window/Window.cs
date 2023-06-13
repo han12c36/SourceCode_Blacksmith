@@ -35,15 +35,19 @@ public abstract class Window : MonoBehaviour, IWindow
             //window.animCtrl = window.GetComponent<Animator>();
             if (window != null) windowList.Add(window);
         }
-
-        //정렬해야됨
     }
+
+    /// <summary>
+    /// 탐색데이터가 많지 않음. Dictionary를 사용할 만큼의 메모리 소비보단 단순 탐색
+    /// </summary>
+    /// <returns>Window</returns>
 
     public static Window GetWindow(WindowID id)
     {
         foreach (Window win in windowList) if (win.id == id) return win;
         return null;
     }
+
     public bool TryOpenWindow()
     {
         if (!windowActivated)

@@ -4,7 +4,11 @@ using TMPro;
 using MVP;
 //using MoreMountains.Feedbacks;
 
-public class InterfaceUserInfo : MonoBehaviour , IView<InterfaceUserInfo>
+/// <summary>
+/// presenter의 View로 지정하기 위한 interface상속
+/// 어떤 데이터의 기능을 끌어다 쓸건지에 대한 명시가 필요 => IView<T> where T : IModel
+/// </summary>
+public class InterfaceUserData : MonoBehaviour , IView<InterfaceUserData>
 {
     public static UserDataPresenter presenter;
     

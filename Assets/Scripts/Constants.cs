@@ -40,7 +40,25 @@ public static class Paths
 
 }
 
-public static class Constants
+public static partial class Constants
+{
+    //LayerName
+    public const string EnemyDectionTargetLayerName = "Player";
+
+    //UI Header
+    public const string PlayerData = "UserData";
+
+    public const string Clock = "Clock";
+    public const string UserData = "UserData";
+    public const string Shop = "Shop";
+    public const string Inventory = "Invertory";
+
+    //UIMaxPosX
+    public const float maxValue = -1200;
+}
+
+
+public static partial class Constants
 {
     //GameManager
 
@@ -91,8 +109,7 @@ public static class Constants
     public const float DefaultFadeOutTime = 2.0f;
     public const int FadeCanvasSortingOrder = 2;
 
-
-    //UserInfo
+    //UserData
     public const string DefaultUserName = "DefaultUserName";
     public const string TestUserName = "TestUserName";
     public const string Level = "Lv_ ";
@@ -106,5 +123,8 @@ public static class Constants
     public const string TutorialDataFileName = "Tutorial Data";
     public const string TutorialDataMenuName = "Scriptable Object/Tutorial Data";
 
+    //UserInterface
+    public const string UI = "_UI";
+    public const string Common_UI = "Common_UI";
 
 }

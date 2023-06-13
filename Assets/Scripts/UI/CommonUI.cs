@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CommonUI : UserInterface
 {
-    [Header("PlayerInfo")]
-    public InterfaceUserInfo userInfo;
+    [Header(Constants.PlayerData)]
+    public InterfaceUserData userData;
     //public Clock clock;
     //public Calendar calendar;
     public GameObject skipButton;

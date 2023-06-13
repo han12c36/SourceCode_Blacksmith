@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialCanvas : Window
 {
-    public Button nextButton;               //대화창을 넘기기 위한 버튼
-    public TutorialButton tutorialButton;   //공용 튜토리얼 버튼
+    public Button nextButton;               
+    public TutorialButton tutorialButton;   
     
     public GameObject tutorialImageBg;
     public Image tutorialImage;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +7,9 @@ public enum FrameType { Normal }
 
 public enum StartEvent_Type { None, Button, Window, Kill, Scene, Item, Interact, SlotDrag}
 
+/// <summary>
+/// 기획자가 작성할 원본 데이터를 관리하기 위한 ScriptableObject
+/// </summary>
 [CreateAssetMenu(fileName = Constants.TutorialDataFileName, menuName = Constants.TutorialDataMenuName)]
 public class TutorialData : ScriptableObject
 {
@@ -22,6 +23,9 @@ public class TutorialData : ScriptableObject
     public string startEvent_str;
 }
 
+/// <summary>
+/// 선퇸된 실제 오브젝트의 이름을 통해 trigger로 구분
+/// </summary>
 [System.Serializable]
 public struct T_Data
 {

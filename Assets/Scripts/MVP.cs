@@ -37,10 +37,9 @@ namespace MVP
             { lock (_lock) { action = eventAction; OnClickEvent(); } }
     }
 
-    public class UserDataPresenter : Presenter<UserData, InterfaceUserInfo>
+    public class UserDataPresenter : Presenter<UserData, InterfaceUserData>
     {
-        //model 과 view를 받는 생성자
-        public UserDataPresenter(IModel<UserData> model,IView<InterfaceUserInfo> view)
+        public UserDataPresenter(IModel<UserData> model,IView<InterfaceUserData> view)
         {
             Model = model; 
             Model.ModelInitialized();
@@ -55,9 +54,11 @@ namespace MVP
             view.name_Text.text = V_ChangeName();
         }
 
-        //중재자로써 주고받을 기능 구현
-
-        //view -> presenter -> model -> presenter -> view
+        /// <summary>
+        /// view -> presenter -> model -> presenter -> view
+        /// 중재자로써 주고받을 기능 구현
+        /// </summary>
+        
         public string V_AddGold(int addAmount = 0) 
         { 
             //view.goldFeedback.PlayFeedbacks();
@@ -66,7 +67,10 @@ namespace MVP
         public string V_LevelUp(int addLevel = 0) { return model.LevelUp(addLevel); }
         public string V_ChangeName(string name = Constants.DefaultUserName) { return model.ChangeName(name); }
 
-        //model -> presenter -> view
+        /// <summary>
+        /// model -> presenter -> view
+        /// </summary>
+        
         public void M_AddGold(string amount) 
         {
             //view.goldFeedback.PlayFeedbacks();

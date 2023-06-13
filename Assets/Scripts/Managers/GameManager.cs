@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Enums;
-using System.IO;
 
 //
 // 요약:
@@ -22,6 +18,13 @@ public class GameManager : MonoBehaviour
     #region Singleton
 
     private static GameManager instance;
+
+    /// <summary>
+    /// Instance할당 우선순위
+    /// 1. Hierarchy에 GameManager를 Instance로 지정
+    /// 2. GameManagerPreFab 사본을 생성 후 이를 Instance로 지정
+    /// 3. 위 상황이 모두 아닐 시 새로운 GameManager를 생성 후 이를 Instance로 지정
+    /// </summary>
     public static GameManager Instance
     {
         get
@@ -47,19 +50,19 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    //순서 보장으로 들어온다!!
-
-    //id값으로 정렬해서 담아둘 곳
-
+    /// <summary>
+    /// 'subManagers' Hierarchy에 객체로 존재하는 SubManager를 담아두는 곳(활동 여부에 무관)
+    /// 'ActivatedsubManagers' 활성화 된 SubManager를 담아두는 곳(실제 작동할 서브매니저들)
+    /// </summary>
     public static List<SubManager> subManagers;
-    //IsActivated가 체크된다면 
     public static List<SubManager> ActivatedsubManagers;
 
-
+    /// <summary>
+    /// SubManager단위가 아닌 GameManager에 붙어 기생하는 컴포넌트
+    /// </summary>
     public static SceneController sceneCtrl;
     public static CoroutineHelper coroutineHelper;
     public static UserData userInfo = new UserData();
-
     public T_Protocol protocol;
 
     #region Attributes

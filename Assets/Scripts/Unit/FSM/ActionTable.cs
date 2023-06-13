@@ -1,11 +1,22 @@
 namespace CustomAction
 {
-    using Enums;
     using System;
     using System.Linq;
     using UnityEngine;
+
+    /// <summary>
+    /// IWeapon과 동일하게 부모 클래스에서 파생 클래스에 접근하기 위한 인터페이스
+    /// </summary>
     public interface IActionTable { }
 
+    /// <summary>
+    /// 행위테이블 정의 : 사용자 즉 본인을 알아야하며, 사용할 열거형에 대한 명시가 있어야한다.
+    /// => 해당 클래스를 파생시 위 부분을 모두 일일이 명시하기에는 상속구조의 장점을 헤친다.
+    /// State Pattern으로 각각의 행위를 관리하여 행위 전환에 cost를 최소화 한다.
+    /// </summary>
+    /// <typeparam name="T">사용자(Owner)</typeparam>
+    /// <typeparam name="E">사용될 열거형(enum)</typeparam>
+    
     public abstract class ActionTable<T, E> : MonoBehaviour, IActionTable where E : Enum
     {
         public T me;
@@ -45,7 +56,7 @@ namespace CustomAction
             int index = Convert.ToInt32(actionIndex);
             if (actions[index] == null) return;
 
-            actions[index].me = default(T); //제네릭에서의 null
+            actions[index].me = default(T);
             actions[index].actionTable = null;
             actions[index] = null;
         }
@@ -53,7 +64,7 @@ namespace CustomAction
         {
             int index = Convert.ToInt32(actionIndex);
 
-            if (actions[index] == null) return; // 왜 안됨?
+            if (actions[index] == null) return;
 
             int nextAction = index;
 
@@ -73,14 +84,15 @@ namespace CustomAction
             curAction.ActionEnter();
         }
 
-        #region 오브젝트 로그 
-        public void PrintText(string text)
-        {
-            string objectName = gameObject.name;
-            Debug.Log($"[{objectName}] {text}");
-        }
-        #endregion
     }
+
+    /// <summary>
+    /// ActionTable을 각 행위마다 알고 있어야한다.
+    /// -> 사용자와 열거형을 명시해야한다.
+    /// </summary>
+    /// <typeparam name="T">ActionTable의 사용자(owner)</typeparam>
+    /// <typeparam name="E">사용할 열거형(enum)</typeparam>
+    
     public abstract class Action<T, E> where E : Enum
     {
         public T me;

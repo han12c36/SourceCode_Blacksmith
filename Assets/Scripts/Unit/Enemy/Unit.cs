@@ -1,11 +1,11 @@
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Enums;
 using Structs;
-using CustomAction;
 
+/// <summary>
+/// Unit은 Player와 Enemy를 구분없이 상호작용하기 위한 부모
+/// </summary>
 
 public abstract class Unit : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public abstract class Unit : MonoBehaviour
 
     public virtual void Awake()
     {
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        //meshRenderer = GetComponentInChildren<MeshRenderer>();
         rigid = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         animCtrl = GetComponent<Animator>();
@@ -38,18 +38,22 @@ public abstract class Unit : MonoBehaviour
         Initialize();
     }
 
-    public virtual void Start()
-    {
-
-    }
+    public virtual void Start() { }
+    
     public virtual void Update()
     {
         if (!canMoveZ && transform.position.z != 0.0f)
             transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
     }
 
-    protected virtual void OnEnable() { }   //풀에서 다시 나왔을때
+    /// <summary>
+    /// Pool에서 나왔을 떄 
+    /// </summary>
+    protected virtual void OnEnable() { }
 
+    /// <summary>
+    /// pool에 들어갈 때
+    /// </summary>
     protected virtual void OnDisable() { UnitReset(); }
     
     protected virtual void FixedUpdate() { }
@@ -67,8 +71,10 @@ public abstract class Unit : MonoBehaviour
         //GameManager.coroutineHelper.StartCoroutine(ChangeColor());
         //SubManager<QuestManager>.Get().SearchQuestProgressKillEnemy(status);
     }
+
     void CreateMaterial()
     {
+
         Material origin;
         if (this.gameObject.GetComponentsInChildren<MeshRenderer>()[0] != null)
         {
@@ -79,7 +85,6 @@ public abstract class Unit : MonoBehaviour
         }
         else
         {
-            // Material 컴포넌트가 없을 경우, SkinnedMeshRenderer들을 검색해서 머테리얼 등록
             origin = this.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>()[0].material;
             Material newMaterial = new Material(origin);
             material = newMaterial;
@@ -89,7 +94,7 @@ public abstract class Unit : MonoBehaviour
     protected IEnumerator ChangeColor()
     {
         material.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
+        yield return CachedCoroutine.waitForHalf;
         material.color = Color.white;
     }
 }
